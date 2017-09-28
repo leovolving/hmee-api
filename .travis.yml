@@ -1,9 +1,14 @@
 language: python
 python:
-  - "2.7"
-# command to install dependencies
+- '2.7'
 install:
-  - pip install -r requirements.txt
-# command to run tests
+- pip install -r requirements.txt
 script:
-  - python test_basic.py test # or py.test for Python versions 3.5 and below
+- python test_basic.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: pHpcB5D++2pK79ysoZfrlUAHios1MleT/2Djm6mJ1i2QO3mXcigtjf47ivARwjN/DLQFYKmRWSW7ztpkz4VtqhRQyuBAN6N43taspmJZFzkHHf6/7wciPMh5QrjCDIyHuTrKJ3R8yXRGyY/++yByQFl8iYNeUWqpqX/bLmtADTW4HcybVC9AJOC4hXx7fnkisBZNbqbZ5D/Kkpswe47sPS4kl8yjTAtDsyy2p1agGUfUOO3kE/M2+j+47ftQCDnKE0XUzCF9xAAHmMEdq+3VB7nF5uLAa8Q7AHTPRVTnnxz78y0lOkQSGjrSVpdSBBLaKopgk5SMsk2hh8htIWxUtrQiqoH90QMf99o9oSvSffzDzI7Tis0fBD8HE+Rv18ZHwIb5ZPmVw+0XJeYuclRXIAUXGZzEQTmOkPAnVMWCkAqkpqlWLC2ittapcDlWhrwqV9IIAH611JqWrp6Cup43xKHtAQbMiD/X5B2i1npyimu7+x3ksYX2YD1ZbXZcuYyRrZSYTC7omdaih2SltYVuZtiYhsoif7i2Sw0MTQottktoKvWbnmZB5PuePl4iGhuPvw72kisyrLab2Fbkl4TLUaq5yq43C1YFZAczu6j7ZNt+6nU9v1Jq9pqXHKL8iMUdIhbp94Q6KB8qx4rRbCfBA9CuONRhM1TGHxDiZiwn6ZU=
+  app: hmee-api
+  on:
+    repo: Ljyockey/hmee-api
