@@ -1,0 +1,8 @@
+BEGIN;
+
+CREATE TABLE parks (
+	id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL
+);
+
+COMMIT;

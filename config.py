@@ -1,8 +1,12 @@
-class BaseConfig(object):
-	DEBUG = False
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
-class DevelopmentConfig(BaseConfig):
+class Config(object):
+	DEBUG = False
+	SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL']
+
+class DevelopmentConfig(Config):
 	DEBUG = True
 
-class ProductionConfig(BaseConfig):
+class ProductionConfig(Config):
 	DEBUG = False		

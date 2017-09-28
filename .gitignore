@@ -1,6 +1,7 @@
 *.pyc
 .DS_Store
 bin
+commands.txt
 include
 lib
 .Python
