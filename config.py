@@ -5,6 +5,11 @@ class Config(object):
 	DEBUG = False
 	SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL']
 
+class TestConfig(Config):
+	DEBUG = True
+	TESTING = True
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+
 class DevelopmentConfig(Config):
 	DEBUG = True
 
