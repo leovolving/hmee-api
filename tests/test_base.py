@@ -1,6 +1,6 @@
 from flask_testing import TestCase
 from project import app, db
-from project.models import Parks, Lands, Attractions
+from project.models import Parks, Lands, Attractions, Mickeys
 import unittest
 
 class BaseTestCase(TestCase):
