@@ -4,8 +4,7 @@ from flask import request, Blueprint, request
 from flask.json import jsonify
 
 home_blueprint = Blueprint(
-    'home', __name__,
-    template_folder='templates'
+    'home', __name__
 ) 
 
 # use decorators to link the function to a url
