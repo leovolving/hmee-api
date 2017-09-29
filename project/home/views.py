@@ -1,5 +1,5 @@
 from project import db
-from project.models import Parks, Lands, Attractions
+from project.models import Parks, Lands, Attractions, Mickeys
 from flask import request, Blueprint, request, abort
 from flask.json import jsonify
 
@@ -68,7 +68,7 @@ ATTRACTIONS TABLE
 @home_blueprint.route('/attractions', methods=['GET'])
 def attractions():
 	if request.method == 'GET':
-		return jsonify(attracitions=[i.serialize() for i in Attractions.query.all()])
+		return jsonify(attractions=[i.serialize() for i in Attractions.query.all()])
 
 #Attractions by land
 @home_blueprint.route('/lands/<land_id>/attractions', methods=['GET'])
@@ -86,7 +86,18 @@ def attractions_by_park(park_id):
 @home_blueprint.route('/attractions/<id>')
 def attraction_by_id(id):
 	if request.method == 'GET':
-		return jsonify(lands=[Attractions.query.get(id).serialize()])				
+		return jsonify(lands=[Attractions.query.get(id).serialize()])
+
+
+"""
+MICKEYS TABLE
+"""
+
+#All Mickeys
+@home_blueprint.route('/mickeys', methods=['GET'])
+def mickeys():
+	if request.method == 'GET':
+		return jsonify(mickeys=[i.serialize() for i in Mickeys.query.all()])						
 
 
 
