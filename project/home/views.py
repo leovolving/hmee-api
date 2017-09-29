@@ -1,5 +1,5 @@
 from project import db
-from project.models import Parks, Lands
+from project.models import Parks, Lands, Attractions
 from flask import request, Blueprint, request
 from flask.json import jsonify
 
@@ -21,3 +21,8 @@ def parks():
 def lands():
 	if request.method == 'GET':
 		return jsonify(lands=[i.serialize() for i in Lands.query.all()])
+
+@home_blueprint.route('/attractions', methods=['GET'])
+def attractions():
+	if request.method == 'GET':
+		return jsonify(attracitions=[i.serialize() for i in Attractions.query.all()])		
