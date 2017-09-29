@@ -1,0 +1,17 @@
+BEGIN;
+
+CREATE TABLE lands (
+	id SERIAL PRIMARY KEY,
+	park_id INTEGER REFERENCES parks NOT NULL,
+	name TEXT NOT NULL
+);
+
+CREATE TABLE attractions (
+	id SERIAL PRIMARY KEY,
+	park_id INTEGER REFERENCES parks,
+	land_id INTEGER REFERENCES lands,
+	name TEXT NOT NULL
+
+);
+
+COMMIT;

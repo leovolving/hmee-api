@@ -1,5 +1,5 @@
 BEGIN;
 
-DROP TABLE parks
+DROP TABLE parks;
 
 COMMIT;
