@@ -1,6 +1,6 @@
 from project import db
 from project.models import Parks, Lands, Attractions
-from flask import request, Blueprint, request
+from flask import request, Blueprint, request, abort
 from flask.json import jsonify
 
 home_blueprint = Blueprint(
@@ -12,15 +12,29 @@ home_blueprint = Blueprint(
 def home():
     return "Hello, World!"  # return a string
 
+@home_blueprint.errorhandler(404)
+def not_found(e):
+	return abort(404)
 
 """
 PARKS TABLE
 """
 
+#All parks
 @home_blueprint.route('/parks', methods=['GET'])
 def parks():
 	if request.method == 'GET':
-		return jsonify(parks=[i.serialize() for i in Parks.query.all()])	
+		return jsonify(parks=[i.serialize() for i in Parks.query.all()])
+
+#Parks by ID
+@home_blueprint.route('/parks/<id>', methods=['GET'])
+def parks_by_id(id):
+	if request.method == 'GET':
+		try:
+			id = int(id)
+			return jsonify(parks=[Parks.query.get(id).serialize()])	
+		except (AttributeError, ValueError):
+			return abort(404)				
 
 
 """
