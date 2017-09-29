@@ -1,5 +1,6 @@
 from flask_testing import TestCase
-from app import app, db, Parks
+from project import app, db
+from project.models import Parks
 import unittest
 
 class BaseTestCase(TestCase):
