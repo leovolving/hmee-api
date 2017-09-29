@@ -1,6 +1,6 @@
 from flask_testing import TestCase
 from project import app, db
-from project.models import Parks
+from project.models import Parks, Lands, Attractions
 import unittest
 
 class BaseTestCase(TestCase):
@@ -14,6 +14,7 @@ class BaseTestCase(TestCase):
         db.create_all()
         db.session.add(Parks("foo"))
         db.session.add(Parks("bar"))
+        db.session.add(Lands(1, "bizz"))
         db.session.commit()
 
     def tearDown(self):
