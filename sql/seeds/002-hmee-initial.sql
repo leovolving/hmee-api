@@ -1,21 +1,21 @@
 BEGIN;
 
 INSERT INTO lands (park_id, name) VALUES
-	(2, 'A Bug’s Lnd'),
-	(2, 'Buena Vista Stret'),
-	(2, 'Car’s Lnd'),
-	(2, 'Grizzly Pak'),
-	(2, 'Hollywood Lnd'),
-	(2, 'Pacific Whrf'),
-	(2, 'Paradise Per'),
-	(1, 'Adventurelnd'),
-	(1, 'Critter Counry'),
-	(1, 'Fantasylnd'),
-	(1, 'Frontierlnd'),
-	(1, 'Main Street, U..A'),
-	(1, 'Mickey’s Toon Twn'),
-	(1, 'New Orleans Squre'),
-	(1, 'Tomorrowlnd'),
+	(2, 'A Bug''s Land'),
+	(2, 'Buena Vista Street'),
+	(2, 'Car''s Land'),
+	(2, 'Grizzly Peak'),
+	(2, 'Hollywood Land'),
+	(2, 'Pacific Wharf'),
+	(2, 'Paradise Pier'),
+	(1, 'Adventureland'),
+	(1, 'Critter Country'),
+	(1, 'Fantasyland'),
+	(1, 'Frontierland'),
+	(1, 'Main Street, U.S.A'),
+	(1, 'Mickey''s Toon Town'),
+	(1, 'New Orleans Square'),
+	(1, 'Tomorrowland'),
 	(3, 'DD');
 
 INSERT INTO attractions (park_id, land_id, name) VALUES
