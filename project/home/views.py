@@ -49,13 +49,30 @@ def land_by_id(id):
 """
 ATTRACTIONS TABLE
 """
+
+#All attractions
 @home_blueprint.route('/attractions', methods=['GET'])
 def attractions():
 	if request.method == 'GET':
 		return jsonify(attracitions=[i.serialize() for i in Attractions.query.all()])
 
+#Attractions by land
+@home_blueprint.route('/lands/<land_id>/attractions', methods=['GET'])
+def attractions_by_land(land_id):
+	if request.method == 'GET':
+		return jsonify(attractions=[i.serialize() for i in Attractions.query.filter_by(land_id=land_id).all()])
+
+#Attractions by park
+@home_blueprint.route('/parks/<park_id>/attractions', methods=['GET'])
+def attractions_by_park(park_id):
+	if request.method == 'GET':
+		return jsonify(attractions=[i.serialize() for i in Attractions.query.filter_by(park_id=park_id).all()])
+
+#One attraction by ID
+@home_blueprint.route('/attractions/<id>')
+def attraction_by_id(id):
+	if request.method == 'GET':
+		return jsonify(lands=[Attractions.query.get(id).serialize()])				
 
 
 
-
-				
