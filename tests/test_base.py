@@ -15,6 +15,9 @@ class BaseTestCase(TestCase):
         db.session.add(Parks("foo"))
         db.session.add(Parks("bar"))
         db.session.add(Lands(1, "bizz"))
+        db.session.add(Lands(2, "bang"))
+        db.session.add(Attractions(1, 8, "Buzz"))
+        db.session.add(Attractions(2, 3, "Fizz"))
         db.session.commit()
 
     def tearDown(self):
