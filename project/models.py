@@ -18,6 +18,7 @@ class Parks(BaseModel, db.Model):
 	name = db.Column(db.Text, nullable=False)
 	lands = db.relationship('Lands', backref='parks')
 	attractions = db.relationship('Attractions', backref='parks')
+	mickeys = db.relationship('Mickeys', backref='parks')
 	a = ['id', 'name']
 
 	def __init__(self, name):
@@ -28,6 +29,7 @@ class Lands(BaseModel, db.Model):
 	park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
 	name = db.Column(db.Text, nullable=False)
 	attractions = db.relationship('Attractions', backref='lands')
+	mickeys = db.relationship('Mickeys', backref='lands')
 	a = ['id', 'park_id', 'name']
 
 	def __init__(self, park_id, name):
@@ -39,9 +41,28 @@ class Attractions(BaseModel, db.Model):
 	park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
 	land_id = db.Column(db.Integer, db.ForeignKey('lands.id'))
 	name = db.Column(db.Text, nullable=False)
+	mickeys = db.relationship('Mickeys', backref='attractions')
 	a = ['id', 'park_id', 'land_id', 'name']
 
 	def __init__(self, park_id, land_id, name):
 		self.park_id = park_id
 		self.land_id = land_id
-		self.name = name			
+		self.name = name
+
+class Mickeys(BaseModel, db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
+	land_id = db.Column(db.Integer, db.ForeignKey('lands.id'))
+	attraction_id = db.Column(db.Integer, db.ForeignKey('attractions.id'))
+	photo_url = db.Column(db.Text)
+	description = db.Column(db.Text)
+	hint = db.Column(db.Text)
+	a = ['park_id', 'land_id', 'attraction_id', 'photo_url', 'description', 'hint']
+
+	def __init__(self, park_id, land_id, attraction_id, photo_url, description, hint):
+		self.park_id = park_id
+		self.land_id = land_id
+		self.attraction_id = attraction_id
+		self.photo_url = photo_url
+		self.description = description
+		self.hint = hint					
