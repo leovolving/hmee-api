@@ -5,7 +5,7 @@ from flask.json import jsonify
 
 home_blueprint = Blueprint(
     'home', __name__
-) 
+)
 
 # use decorators to link the function to a url
 @home_blueprint.route('/')
@@ -83,21 +83,47 @@ def attractions_by_park(park_id):
 		return jsonify(attractions=[i.serialize() for i in Attractions.query.filter_by(park_id=park_id).all()])
 
 #One attraction by ID
-@home_blueprint.route('/attractions/<id>')
+@home_blueprint.route('/attractions/<id>', methods=['GET'])
 def attraction_by_id(id):
 	if request.method == 'GET':
-		return jsonify(lands=[Attractions.query.get(id).serialize()])
+		return jsonify(attractions=[Attractions.query.get(id).serialize()])
 
 
 """
 MICKEYS TABLE
 """
 
-#All Mickeys
-@home_blueprint.route('/mickeys', methods=['GET'])
+#All Mickeys/add Mickey
+@home_blueprint.route('/mickeys', methods=['GET', 'POST'])
 def mickeys():
 	if request.method == 'GET':
-		return jsonify(mickeys=[i.serialize() for i in Mickeys.query.all()])						
+		return jsonify(mickeys=[i.serialize() for i in Mickeys.query.all()])
+	if request.method == 'POST':
+		a = ['park_id', 'land_id', 'attraction_id', 'photo_url', 'description', 'hint']
+		j = request.json
+		for r in a:
+			if r not in request.json:
+				request.json[r] = None
+		db.session.add(Mickeys(j['park_id'], j['land_id'], j['attraction_id'], j['photo_url'], j['description'], j['hint']))
+		db.session.commit()
+		return 'Done'
+
+#Mickey by ID
+@home_blueprint.route('/mickeys/<id>', methods=['GET', 'PUT', 'DELETE'])
+def mickey_by_id(id):
+	if request.method == 'GET':
+		return jsonify(mickeys=[Mickeys.query.get(id).serialize()])
+	if request.method == 'PUT':
+		update = db.session.query(Mickeys).filter_by(id = id).update(request.json)
+		db.session.commit()		
+		return 'Done'
+	if request.method == 'DELETE':
+		m = Mickeys.query.get(id)
+		db.session.delete(m)
+		db.session.commit()
+		return 'Done'	
+								
+
 
 
 

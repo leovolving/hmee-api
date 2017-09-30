@@ -57,7 +57,7 @@ class Mickeys(BaseModel, db.Model):
 	photo_url = db.Column(db.Text)
 	description = db.Column(db.Text)
 	hint = db.Column(db.Text)
-	a = ['park_id', 'land_id', 'attraction_id', 'photo_url', 'description', 'hint']
+	a = ['id', 'park_id', 'land_id', 'attraction_id', 'photo_url', 'description', 'hint']
 
 	def __init__(self, park_id, land_id, attraction_id, photo_url, description, hint):
 		self.park_id = park_id
