@@ -60,14 +60,14 @@
 <h2 id="install">Installation</h2>
 <p>Installation for local development:</p>
 <ul>
-	<li>git clone https://github.com/Ljyockey/hmee-api.git</li>
-	<li>pip install requirements.txt</li>
-	<li>export APP_SETTINGS="config.DevelopmentConfig"</li>
-	<li>export DATABASE_URL="https://hmee-api.herokuapp.com"</li>
-	<li>python run.py</li>
+	<li>$ git clone https://github.com/Ljyockey/hmee-api.git</li>
+	<li>$ pip install requirements.txt</li>
+	<li>$ export APP_SETTINGS="config.DevelopmentConfig"</li>
+	<li>$ export DATABASE_URL="https://hmee-api.herokuapp.com"</li>
+	<li>$ python run.py</li>
 	<li>localhost:5000</li>
 </ul>
 
 <h2 id="testing">Testing</h2>
-<p>python manage.py test</p>
+<p>$ python manage.py test</p>
 
