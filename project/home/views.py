@@ -110,7 +110,7 @@ def mickeys():
 		db.session.commit()
 		return jsonify({'mickey': m.serialize()}), 201
 
-#Mickey by ID
+#Mickey by ID - GET/DELETE
 @home_blueprint.route('/mickeys/<id>', methods=['GET', 'PUT', 'DELETE'])
 def mickey_by_id(id):
 	if request.method == 'GET':
@@ -127,6 +127,34 @@ def mickey_by_id(id):
 		db.session.delete(m)
 		db.session.commit()
 		return 'Done', 204
+
+#Mickeys by park
+@home_blueprint.route('/parks/<park_id>/mickeys', methods=['GET'])
+def mickeys_by_park(park_id):
+	if request.method == 'GET':
+		return jsonify(mickeys=[i.serialize() 
+			for i in Mickeys.query.filter_by(park_id=park_id).all()])
+
+#Mickeys by land
+@home_blueprint.route('/lands/<land_id>/mickeys', methods=['GET'])
+def mickeys_by_land(land_id):
+	if request.method == 'GET':
+		return jsonify(mickeys=[i.serialize() 
+			for i in Mickeys.query.filter_by(land_id=land_id).all()])		
+
+#Mickeys by attraction
+@home_blueprint.route('/attractions/<attraction_id>/mickeys', methods=['GET'])
+def mickeys_by_attraction(attraction_id):
+	if request.method == 'GET':
+		return jsonify(mickeys=[i.serialize() 
+			for i in Mickeys.query.filter_by(attraction_id=attraction_id).all()])	
+
+#Mickeys by land with no attraction
+@home_blueprint.route('/lands/<land_id>/mickeys/none', methods=['GET'])
+def mickeys_with_no_attraction(land_id):
+	if request.method == 'GET':
+		return jsonify(mickeys=[i.serialize() 
+			for i in Mickeys.query.filter_by(land_id=land_id, attraction_id=None).all()])			
 								
 
 
