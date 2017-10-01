@@ -69,5 +69,5 @@
 </ul>
 
 <h2 id="testing">Testing</h2>
-<p>python manage.py</p>
+<p>python manage.py test</p>
 
