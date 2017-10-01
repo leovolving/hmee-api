@@ -19,7 +19,7 @@ class BaseTestCase(TestCase):
         db.session.add(Attractions(1, 8, "Buzz"))
         db.session.add(Attractions(2, 3, "Fizz"))
         db.session.add(Mickeys(1, 15, 75, 'test.url', 'foo desc', 'foo hint'))
-        db.session.add(Mickeys(1, 5, 17, 'test2.url', 'foo2 desc', 'foo2 hint'))
+        db.session.add(Mickeys(2, 5, None, 'test2.url', 'foo2 desc', 'foo2 hint'))
         db.session.commit()
 
     def tearDown(self):
