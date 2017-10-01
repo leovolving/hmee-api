@@ -45,9 +45,13 @@
 </ul>
 
 <h3 id="mickeys">Mickeys</h3>
-<p>Hidden Mickeys and Easter Eggs</p>
+<p>Hidden Mickeys and Easter Eggs. Referred henceforth as "Mickeys"</p>
 <ul>
-	<li>GET: /mickeys - a list of all</li>
+	<li>GET: /mickeys - a list of all Mickeys</li>
+	<li>GET: /parks/:park_id/mickeys - list of Mickeys by park</li>
+	<li>GET: /lands/:land_id/mickeys - list of all Mickeys by land</li>
+	<li> GET: /attractions/:attraction_id/mickeys - list of all Mickeys by attraction</li>
+	<li>GET: lands/:land_id/mickeys/none - list of Mickeys by land where attraction_id = null</li>
 	<li>POST: /mickeys - add new row. *NOTE: content-type: application/json REQUIRED</li>
 	<li>PUT: /mickeys/:id - updates single row. *NOTE: content-type: application/json REQUIRED</li>
 	<li>DELETE: /mickeys/:id - deletes single row</li>
