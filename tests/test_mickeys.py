@@ -15,6 +15,26 @@ class MickeyTests(BaseTestCase):
 			res = self.client.get('/mickeys/1')
 			self.assertEqual(res.status_code, 200)
 
+	def test_can_get_mickey_by_park(self):
+		with self.client:
+			res = self.client.get('/parks/1/mickeys')
+			self.assertEqual(res.status_code, 200)
+
+	def test_can_get_mickey_by_land(self):
+		with self.client:
+			res = self.client.get('/lands/5/mickeys')
+			self.assertEqual(res.status_code, 200)
+
+	def test_can_get_mickey_by_attraction(self):
+		with self.client:
+			res = self.client.get('/attractions/75/mickeys')
+			self.assertEqual(res.status_code, 200)
+
+	def test_can_get_mickey_by_land_without_attraction(self):
+		with self.client:
+			res = self.client.get('/lands/5/mickeys/none')
+			self.assertEqual(res.status_code, 200)												
+
 	def test_can_post_new_mickey(self):
 		with self.client:
 			u = dict(
