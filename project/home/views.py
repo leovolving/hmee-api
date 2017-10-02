@@ -10,7 +10,8 @@ home_blueprint = Blueprint(
 # use decorators to link the function to a url
 @home_blueprint.route('/')
 def home():
-    return "Hello, World!"  # return a string
+    return '<h1>HMEE API</h1> \
+    <p>Visit <a href="https://github.com/Ljyockey/hmee-api">GitHub</a> for documentation</p>'
 
 @home_blueprint.errorhandler(404)
 def not_found(e):
