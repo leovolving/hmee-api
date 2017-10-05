@@ -3,17 +3,11 @@ from flask import Flask
 from flask.json import jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
-from SimpleHTTPServer import SimpleHTTPRequestHandler
-import BaseHTTPServer
-
-#Allow CORS
-class CORSRequestHandler (SimpleHTTPRequestHandler):
-    def end_headers (self):
-        self.send_header('Access-Control-Allow-Origin', '*')
-        SimpleHTTPRequestHandler.end_headers(self)
+from flask_cors import CORS, cross_origin
 
 # create the application object
 app = Flask(__name__)
+CORS(app)
 
 
 #config
