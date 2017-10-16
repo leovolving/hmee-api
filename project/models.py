@@ -11,6 +11,10 @@ class BaseModel():
 		r = {}
 		for i in self.a:
 			r[i] = getattr(self,i)
+		if hasattr(self, 'land'):
+			r['land_name'] = self.land.name	
+		if hasattr(self, 'attraction'):
+			r['attraction_name'] = self.attraction.name		
 		return r				
 
 class Parks(BaseModel, db.Model):
@@ -53,7 +57,9 @@ class Mickeys(BaseModel, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
 	land_id = db.Column(db.Integer, db.ForeignKey('lands.id'))
+	land = db.relationship('Lands', foreign_keys='Mickeys.land_id')
 	attraction_id = db.Column(db.Integer, db.ForeignKey('attractions.id'))
+	attraction = db.relationship('Attractions', foreign_keys='Mickeys.attraction_id')
 	photo_url = db.Column(db.Text)
 	description = db.Column(db.Text)
 	hint = db.Column(db.Text)
