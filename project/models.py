@@ -11,10 +11,14 @@ class BaseModel():
 		r = {}
 		for i in self.a:
 			r[i] = getattr(self,i)
-		if hasattr(self, 'land'):
-			r['land_name'] = self.land.name	
-		if hasattr(self, 'attraction'):
-			r['attraction_name'] = self.attraction.name		
+		if self.land != None:
+			r['land_name'] = self.land.name
+		else:
+			r['land_name'] = None		
+		if self.attraction != None:
+			r['attraction_name'] = self.attraction.name
+		else:
+			r['attraction_name'] = None			
 		return r				
 
 class Parks(BaseModel, db.Model):
