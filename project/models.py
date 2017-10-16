@@ -9,16 +9,28 @@ class BaseModel():
 
 	def serialize(self):
 		r = {}
+		#Creates JSON object for non-relational data
 		for i in self.a:
 			r[i] = getattr(self,i)
-		if self.land != None:
-			r['land_name'] = self.land.name
-		else:
-			r['land_name'] = None		
-		if self.attraction != None:
-			r['attraction_name'] = self.attraction.name
-		else:
-			r['attraction_name'] = None			
+
+		#Checks if there is a relational data attribute for parks,
+		#lands, and attractions and adds to result 	
+		if hasattr(self, 'park'):
+			if self.park != None:
+				r['park_name'] = self.park.name
+			else:
+				r['park_name'] = None			
+		if hasattr(self, 'land'):	
+			if self.land != None:
+				r['land_name'] = self.land.name
+			else:
+				r['land_name'] = None
+		if hasattr(self, 'attraction'):				
+			if self.attraction != None:
+				r['attraction_name'] = self.attraction.name
+			else:
+				r['attraction_name'] = None	
+
 		return r				
 
 class Parks(BaseModel, db.Model):
@@ -60,6 +72,7 @@ class Attractions(BaseModel, db.Model):
 class Mickeys(BaseModel, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
+	park = db.relationship('Parks', foreign_keys='Mickeys.park_id')
 	land_id = db.Column(db.Integer, db.ForeignKey('lands.id'))
 	land = db.relationship('Lands', foreign_keys='Mickeys.land_id')
 	attraction_id = db.Column(db.Integer, db.ForeignKey('attractions.id'))
