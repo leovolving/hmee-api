@@ -19,7 +19,7 @@ class BaseModel():
 			if self.park != None:
 				r['park_name'] = self.park.name
 			else:
-				r['land_name'] = None			
+				r['park_name'] = None			
 
 		if hasattr(self, 'land'):	
 			if self.land != None:
