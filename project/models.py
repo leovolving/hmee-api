@@ -14,17 +14,19 @@ class BaseModel():
 			r[i] = getattr(self,i)
 
 		#Checks if there is a relational data attribute for parks,
-		#lands, and attractions and adds to result 	
-		if hasattr(self, 'park'):
+		#lands, and attractions and adds to result 
+		if hasattr(self, 'park'):	
 			if self.park != None:
 				r['park_name'] = self.park.name
 			else:
-				r['park_name'] = None			
+				r['land_name'] = None			
+
 		if hasattr(self, 'land'):	
 			if self.land != None:
 				r['land_name'] = self.land.name
 			else:
 				r['land_name'] = None
+
 		if hasattr(self, 'attraction'):				
 			if self.attraction != None:
 				r['attraction_name'] = self.attraction.name
