@@ -11,7 +11,46 @@ home_blueprint = Blueprint(
 @home_blueprint.route('/')
 def home():
     return '<h1>HMEE API</h1> \
-    <p>Visit <a href="https://github.com/Ljyockey/hmee-api">GitHub</a> for documentation</p>'
+    <p>Visit <a href="https://github.com/Ljyockey/hmee-api" target="_blank">GitHub</a> for full documentation</p> \
+	<h2 id="endpoints">Endpoints</h2> \
+<p>Base URL: https://hmee-api.herokuapp.com</p> \
+\
+<h3 id="parks">Parks</h3> \
+<p>DLR parks</p> \
+<ul> \
+	<li>GET: /parks - a list of all parks. <a href="/parks">Try now!</a></li> \
+	<li>GET: /parks/:id - a single park by ID</li> \
+</ul> \
+\
+<h3 id="lands">Lands</h3> \
+<p>DLR lands, organized by park</p> \
+<ul> \
+	<li>GET: /lands - a list of all lands. <a href="/lands">Try now!</a></li> \
+	<li>GET: /parks/:park_id/lands - a list of lands by park</li> \
+	<li>GET: /lands:id - a single land by ID</li> \
+</ul> \
+\
+<h3 id="attractions">Attractions</h3> \
+<p>DLR attractions - organized by park and land</p> \
+<ul> \
+	<li>GET: /attractions - a list of all attractions. <a href="/attractions">Try now!</a></li> \
+	<li>GET: /parks/:park_id/attractions - a list of attractions by park</li> \
+	<li>GET: /lands/:land_id/attractions - a list of all attractions by land</li> \
+	<li>GET: /attractions/:id - a single attraction by ID</li> \
+</ul> \
+\
+<h3 id="mickeys">Mickeys</h3> \
+<p>Hidden Mickeys and Easter Eggs. Referred henceforth as "Mickeys"</p> \
+<ul> \
+	<li>GET: /mickeys - a list of all Mickeys. <a href="/mickeys">Try now!</a></li> \
+	<li>GET: /parks/:park_id/mickeys - list of Mickeys by park</li> \
+	<li>GET: /lands/:land_id/mickeys - list of all Mickeys by land</li> \
+	<li> GET: /attractions/:attraction_id/mickeys - list of all Mickeys by attraction</li> \
+	<li>GET: lands/:land_id/mickeys/none - list of Mickeys by land where attraction_id = null</li> \
+	<li>POST: /mickeys - add new row. *NOTE: content-type: application/json REQUIRED</li> \
+	<li>PUT: /mickeys/:id - updates single row. *NOTE: content-type: application/json REQUIRED</li> \
+	<li>DELETE: /mickeys/:id - deletes single row</li> \
+</ul>'
 
 @home_blueprint.errorhandler(404)
 def not_found(e):

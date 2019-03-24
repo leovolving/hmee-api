@@ -61,7 +61,7 @@
 <p>Installation for local development:</p>
 <ul>
 	<li>$ git clone https://github.com/Ljyockey/hmee-api.git</li>
-	<li>$ pip install requirements.txt</li>
+	<li>$ pip install -r requirements.txt</li>
 	<li>$ export APP_SETTINGS="config.DevelopmentConfig"</li>
 	<li>$ export DATABASE_URL="https://hmee-api.herokuapp.com"</li>
 	<li>$ python run.py</li>
